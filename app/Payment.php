@@ -9,4 +9,8 @@ class Payment extends Model
 {
     use BelongsToUser;
 
+    public function order (){
+        return $this->belongsTo(Order::class);
+    }
+
 }
