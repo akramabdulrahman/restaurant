@@ -16,15 +16,15 @@ GOTO EndComment
 @echo on
 
 
-php artisan make:migration:schema create_menus_table --schema="name:string"
+php artisan make:migration:schema create_menus_table --schema="name:string,img:string"
 php artisan make:migration:schema create_jobs_table --schema="name:string"
 php artisan make:migration:schema create_statuses_table --schema="name:string"
-php artisan make:migration:schema create_items_table --schema="name:string,price:decimal,description:longText,menu_id:integer:unsigned:foreign"
+php artisan make:migration:schema create_items_table --schema="name:string,price:decimal,description:longText:nullable,menu_id:integer:unsigned:foreign"
 php artisan make:migration:schema create_services_table --schema="name:string,criteria:string"
 php artisan make:migration:schema create_customers_table --schema="user_id:integer:unsigned:foreign,is_waiter:boolean,last_check_in:timestamp"
 php artisan make:migration:schema create_employees_table --schema="user_id:integer:unsigned:foreign,job_id:integer:unsigned:foreign,check_in:time,checkout:time,salary:decimal"
 php artisan make:migration:schema create_attendances_table --schema="user_id:integer:unsigned:foreign,check_in:time,checkout:time"
-php artisan make:migration:schema create_orders_table --schema="user_id:integer:unsigned:foreign,is_internal:boolean,status_id:integer:unsigned:foreign,price_before_services:decimal,price_after_services:decimal,expected_finish:timestamp,finished_at:timestamp"
+php artisan make:migration:schema create_orders_table --schema="is_internal:boolean,status_id:integer:unsigned:foreign,price_before_services:decimal,price_after_services:decimal,expected_finish:timestamp,finished_at:timestamp"
 php artisan make:migration:schema create_payments_table --schema="user_id:integer:unsigned:foreign,payment:decimal,order_id:integer:unsigned:foreign"
 php artisan make:migration:schema create_translations_table --schema="translation:string,translatable:morphs"
 php artisan make:migration:schema create_logs_table --schema="user_id:integer:unsigned:foreign,order_id:integer:unsigned:foreign,updated_prop:string,old:string,new:string"
