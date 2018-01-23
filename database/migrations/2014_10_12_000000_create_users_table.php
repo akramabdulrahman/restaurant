@@ -18,11 +18,11 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('facebook_id');
-            $table->string('facebook_token');
+            $table->string('facebook_id')->nullable();
+            $table->string('facebook_token')->nullable();
             $table->string('address');
             $table->string('mobile');
-            $table->string('locale');
+            $table->string('locale')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
