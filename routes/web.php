@@ -22,3 +22,25 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboards', 'as' => 'dashboards.', 'middleware' => ['auth']], function () {
+
+    Route::group(['prefix' => 'cashier', 'as' => 'cashier.'], function () {
+        Route::get('/', 'CashierController@index')->name('index');
+    });
+
+    Route::group(['prefix' => 'chef', 'as' => 'chef.'], function () {
+        Route::get('/', 'ChefController@index')->name('index');
+    });
+
+    Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
+        Route::get('/', 'CustomerController@index')->name('index');
+    });
+
+    Route::group(['prefix' => 'delivery', 'as' => 'delivery.'], function () {
+        Route::get('/', 'DeliveryController@index')->name('index');
+    });
+
+
+});
