@@ -38,6 +38,10 @@ Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboards', 'as' => 'das
         Route::get('/', 'CustomerController@index')->name('index');
     });
 
+    Route::group(['prefix' => 'waiter', 'as' => 'waiter.'], function () {
+        Route::get('/', 'CustomerController@index')->name('index');
+    });
+
     Route::group(['prefix' => 'delivery', 'as' => 'delivery.'], function () {
         Route::get('/', 'DeliveryController@index')->name('index');
     });

@@ -50,19 +50,13 @@ trait HasRoles
      * @param  mixed $role
      * @return boolean
      */
-    public function hasRole($role)
+    public function hasRole($role,$or=true)
     {
         if (is_string($role)) {
             return $this->roles->contains('name', $role);
         }
 
-        if (is_array($role)) {
-            return $role->reduce(function ($flag, $rol) {
-                return $flag && $this->roles->contains('name', $rol);
-            }, true);
-        }
-
-        return !!$role->intersect($this->roles)->count();
+        return !!collect($role)->intersect($this->roles->map->name)->count();
     }
 
 

@@ -12,7 +12,7 @@ GOTO EndComment
 :EndComment
 @echo on
 
-
+@echo off
 GOTO EndCommentsecond
 		this command will run a seeder that will get all roles into the database
 :EndCommentsecond

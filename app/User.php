@@ -16,13 +16,24 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'address', 'mobile'
+        'name', 'email', 'password', 'address', 'mobile','last_check_in'
     ];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
+     *
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    /**
+     * The attributes that should be eager-loaded .
+     *
+     * @var array
+     *
      */
     protected $with = ['role'];
 
@@ -42,7 +53,17 @@ class User extends Authenticatable
         return $this->customer()->exists() ? $this->customer() : $this->employee();
     }
 
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+
+    /**
+     * magic function to always encrypt password when set.
+     *
+     * @return  void
+     *
+     */
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
+
 }

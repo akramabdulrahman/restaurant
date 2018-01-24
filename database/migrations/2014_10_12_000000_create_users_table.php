@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('address');
             $table->string('mobile');
             $table->string('locale')->nullable();
+            $table->timestamp('last_check_in')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
