@@ -9,11 +9,17 @@ class Employee extends Model
 {
     use BelongsToUser;
 	
-	protected $with=['user'];
-    //$employee->user->orders();
-
+	protected $with=[];
+    protected $fillable = [
+        'check_in','checkout','salary','unit'
+    ];
+    protected $casts=[
+        'check_in'=>'time',
+        'checkout'=>'time'
+    ];
     public function orders(){
     	return $this->user->orders();
-    	//$employee->orders()
     }
+
+
 }

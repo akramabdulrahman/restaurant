@@ -21,8 +21,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
+Route::group(['prefix' => 'home', 'as' => 'home.', 'middleware' => ['auth']],function(){
+    Route::get('/', 'HomeController@index')->name('index');
+    Route::post('/employee/complete', 'HomeController@completeEmployee')->name('complete.employee');
+});
 
 Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboards', 'as' => 'dashboards.', 'middleware' => ['auth']], function () {
 
